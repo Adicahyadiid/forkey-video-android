@@ -1,0 +1,7 @@
+
+{
+  "appId": "com.forkey.video",
+  "appName": "ForKey Video",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
