@@ -1,1 +1,75 @@
 
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101020">
+<title>ForKey Video</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101020;color:white;font-family:Arial,sans-serif}
+header{padding:20px;background:#191932;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:bold;color:#ff397d}
+button{border:0;border-radius:10px;padding:12px;background:#ff397d;color:white;font-weight:bold}
+nav{display:flex;justify-content:space-around;background:#191932;padding:14px;position:sticky;top:0}
+nav span{cursor:pointer;color:#ddd}
+main{padding:15px}
+h2{font-size:19px}
+.upload{background:#242443;padding:18px;border-radius:14px;margin-bottom:18px}
+input{width:100%;padding:12px;border-radius:8px;margin:8px 0}
+video{width:100%;border-radius:12px;background:black}
+.post{background:#191932;padding:12px;border-radius:14px;margin-bottom:20px}
+.caption{padding:10px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">ForKey Video</div>
+<div>▶ Video</div>
+</header>
+<nav>
+<span onclick="showHome()">Beranda</span>
+<span onclick="document.getElementById('upload').scrollIntoView()">Upload</span>
+<span onclick="showProfile()">Profil</span>
+</nav>
+<main>
+<section class="upload" id="upload">
+<h2>+ Buat Video</h2>
+<input type="file" id="videoFile" accept="video/*">
+<input type="text" id="caption" placeholder="Tulis deskripsi video...">
+<button onclick="publish()">Publikasikan</button>
+</section>
+<h2>Video Terbaru</h2>
+<div id="feed">
+<div class="post">
+<h3>Selamat datang di ForKey Video!</h3>
+<p>Platform berbagi video kamu.</p>
+</div>
+</div>
+</main>
+<script>
+function publish(){
+const file=document.getElementById('videoFile').files[0];
+const caption=document.getElementById('caption').value;
+if(!file){alert('Pilih video terlebih dahulu');return;}
+const url=URL.createObjectURL(file);
+const post=document.createElement('div');
+post.className='post';
+const video=document.createElement('video');
+video.src=url;
+video.controls=true;
+const text=document.createElement('div');
+text.className='caption';
+text.textContent=caption;
+post.append(video,text);
+document.getElementById('feed').prepend(post);
+document.getElementById('videoFile').value='';
+document.getElementById('caption').value='';
+}
+function showHome(){window.scrollTo({top:0,behavior:'smooth'});}
+function showProfile(){alert('Profil ForKey Video');}
+</script>
+</body>
+</html>
